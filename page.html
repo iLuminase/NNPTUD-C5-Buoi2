@@ -242,6 +242,16 @@
                 />
               </div>
               <div class="mb-3">
+                <label for="createImageUrl" class="form-label">Image URL</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="createImageUrl"
+                  placeholder="Enter image URL (optional)"
+                />
+                <small class="text-muted">Để trống sẽ dùng ảnh mặc định</small>
+              </div>
+              <div class="mb-3">
                 <label for="createDescription" class="form-label"
                   >Description</label
                 >
@@ -269,6 +279,108 @@
               onclick="submitCreateProduct()"
             >
               <i class="fas fa-check me-1"></i>Create Product
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div
+      class="modal fade"
+      id="editProductModal"
+      tabindex="-1"
+      aria-labelledby="editProductModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-white">
+            <h5 class="modal-title" id="editProductModalLabel">
+              <i class="fas fa-edit me-2"></i>Edit Product
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editProductForm">
+              <input type="hidden" id="editProductId" />
+              <div class="mb-3">
+                <label for="editTitle" class="form-label">Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editTitle"
+                  placeholder="Enter product name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editCategory" class="form-label">Category</label>
+                <select class="form-select" id="editCategory" required>
+                  <option value="">Select a category</option>
+                  <option value="Clothes">Clothes</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Shoes">Shoes</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="editPrice" class="form-label">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="editPrice"
+                  placeholder="Enter price"
+                  step="0.01"
+                  min="0"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editImageUrl" class="form-label">Image URL</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="editImageUrl"
+                  placeholder="Enter image URL (optional)"
+                />
+                <small class="text-muted"
+                  >Để trống sẽ giữ ảnh cũ hoặc dùng ảnh mặc định</small
+                >
+              </div>
+              <div class="mb-3">
+                <label for="editDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="editDescription"
+                  rows="3"
+                  placeholder="Enter product description"
+                  required
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              onclick="submitEditProduct()"
+            >
+              <i class="fas fa-save me-1"></i>Save Changes
             </button>
           </div>
         </div>

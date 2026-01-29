@@ -2,8 +2,8 @@
   "$schema": "./node_modules/json-server/schema.json",
   "products": [
     {
-      "id": 160,
-      "title": "External Hard Drive",
+      "id": "160",
+      "title": "Ổ cứng SSD King Tởm 5Tb",
       "slug": "external-hard-drive",
       "price": 890,
       "description": "High-capacity external hard drive offering fast data transfer, reliable storage, and secure backup for personal and professional use.",
@@ -15,7 +15,9 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://hoanglongcomputer.vn/media/product/877-62fa9b661c85d043164a1502650e9c4f.jpg"
+      ],
       "creationAt": "2026-01-27T12:58:26.000Z",
       "updatedAt": "2026-01-27T12:58:26.000Z",
       "comments": [
@@ -30,11 +32,24 @@
           "text": "Giao hàng nhanh, đóng gói cẩn thận",
           "postId": "160",
           "createdAt": "2026-01-28T11:00:00.000Z"
+        },
+        {
+          "id": "4",
+          "text": "sản phẩm như cao cấp",
+          "postId": "160",
+          "createdAt": "2026-01-29T15:21:16.706Z"
+        },
+        {
+          "id": "1769702210888",
+          "text": "hehe",
+          "postId": "160",
+          "createdAt": "2026-01-29T15:56:50.888Z",
+          "date": "22:56:50 29/1/2026"
         }
       ]
     },
     {
-      "id": 187,
+      "id": "187",
       "title": "Fire Red Sport Sneakers",
       "slug": "fire-red-sport-sneakers",
       "price": 95,
@@ -47,7 +62,9 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://i.imgur.com/PgK0RMZ.png"],
+      "images": [
+        "https://i.imgur.com/PgK0RMZ.png"
+      ],
       "creationAt": "2026-01-27T16:04:41.000Z",
       "updatedAt": "2026-01-27T16:04:41.000Z",
       "comments": [
@@ -56,11 +73,26 @@
           "text": "Giày rất êm, thích lắm",
           "postId": "187",
           "createdAt": "2026-01-28T09:00:00.000Z"
+        },
+        {
+          "id": "1769702201969",
+          "text": "hh",
+          "postId": "187",
+          "createdAt": "2026-01-29T15:56:41.969Z",
+          "date": "22:56:41 29/1/2026"
+        },
+        {
+          "id": "1769702206806",
+          "text": "hahaha",
+          "postId": "187",
+          "createdAt": "2026-01-29T15:56:46.806Z",
+          "date": "22:56:46 29/1/2026"
         }
-      ]
+      ],
+      "isDeleted": true
     },
     {
-      "id": 188,
+      "id": "188",
       "title": "Aggressive Black & Red Sneakers",
       "slug": "aggressive-black-red-sneakers",
       "price": 110,
@@ -73,12 +105,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://i.imgur.com/vPjonMX.png"],
+      "images": [
+        "https://i.imgur.com/vPjonMX.png"
+      ],
       "creationAt": "2026-01-27T16:04:46.000Z",
       "updatedAt": "2026-01-27T16:04:46.000Z"
     },
     {
-      "id": 189,
+      "id": "189",
       "title": "Minimalist White Sport Smartwatch",
       "slug": "minimalist-white-sport-smartwatch",
       "price": 150,
@@ -91,12 +125,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://i.imgur.com/3V4VwdP.png"],
+      "images": [
+        "https://i.imgur.com/3V4VwdP.png"
+      ],
       "creationAt": "2026-01-27T16:09:07.000Z",
       "updatedAt": "2026-01-27T16:09:07.000Z"
     },
     {
-      "id": 190,
+      "id": "190",
       "title": "Premium Black Wireless Headset",
       "slug": "premium-black-wireless-headset",
       "price": 120,
@@ -109,12 +145,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://i.imgur.com/uAbpeVs.png"],
+      "images": [
+        "https://i.imgur.com/uAbpeVs.png"
+      ],
       "creationAt": "2026-01-27T16:09:13.000Z",
       "updatedAt": "2026-01-27T16:09:13.000Z"
     },
     {
-      "id": 191,
+      "id": "191",
       "title": "Waterproof Bluetooth Earbuds - Black",
       "slug": "waterproof-bluetooth-earbuds-black",
       "price": 80,
@@ -127,12 +165,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://i.imgur.com/BEZlrr6.png"],
+      "images": [
+        "https://i.imgur.com/BEZlrr6.png"
+      ],
       "creationAt": "2026-01-27T16:09:19.000Z",
       "updatedAt": "2026-01-27T16:09:19.000Z"
     },
     {
-      "id": 192,
+      "id": "192",
       "title": "Vintage Mood Indigo Cap",
       "slug": "vintage-mood-indigo-cap",
       "price": 18,
@@ -145,12 +185,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/JLrUweq.png"],
+      "images": [
+        "https://i.imgur.com/JLrUweq.png"
+      ],
       "creationAt": "2026-01-27T16:35:02.000Z",
       "updatedAt": "2026-01-27T16:35:02.000Z"
     },
     {
-      "id": 193,
+      "id": "193",
       "title": "Vibrant Purple Cotton Cap",
       "slug": "vibrant-purple-cotton-cap",
       "price": 18,
@@ -163,12 +205,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/UaFWQbU.png"],
+      "images": [
+        "https://i.imgur.com/UaFWQbU.png"
+      ],
       "creationAt": "2026-01-27T16:35:06.000Z",
       "updatedAt": "2026-01-27T16:35:06.000Z"
     },
     {
-      "id": 194,
+      "id": "194",
       "title": "Classic Red Sport Cap",
       "slug": "classic-red-sport-cap",
       "price": 18,
@@ -181,12 +225,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/hrOcUSp.png"],
+      "images": [
+        "https://i.imgur.com/hrOcUSp.png"
+      ],
       "creationAt": "2026-01-27T16:35:11.000Z",
       "updatedAt": "2026-01-27T16:35:11.000Z"
     },
     {
-      "id": 195,
+      "id": "195",
       "title": "Minimalist White T-Shirt",
       "slug": "minimalist-white-t-shirt",
       "price": 25,
@@ -199,12 +245,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/A30Jtpr.png"],
+      "images": [
+        "https://i.imgur.com/A30Jtpr.png"
+      ],
       "creationAt": "2026-01-27T16:35:17.000Z",
       "updatedAt": "2026-01-27T16:35:17.000Z"
     },
     {
-      "id": 196,
+      "id": "196",
       "title": "Essential Black T-Shirt",
       "slug": "essential-black-t-shirt",
       "price": 25,
@@ -217,12 +265,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/Yhq2VNz.png"],
+      "images": [
+        "https://i.imgur.com/Yhq2VNz.png"
+      ],
       "creationAt": "2026-01-27T16:35:22.000Z",
       "updatedAt": "2026-01-27T16:35:22.000Z"
     },
     {
-      "id": 197,
+      "id": "197",
       "title": "Sleek White Wireless Bluetooth Headset",
       "slug": "sleek-white-wireless-bluetooth-headset",
       "price": 130,
@@ -235,12 +285,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://i.imgur.com/rkQ9fs3.png"],
+      "images": [
+        "https://i.imgur.com/rkQ9fs3.png"
+      ],
       "creationAt": "2026-01-27T16:37:03.000Z",
       "updatedAt": "2026-01-27T16:37:03.000Z"
     },
     {
-      "id": 198,
+      "id": "198",
       "title": "Ocean Blue Waterproof Gym Bag",
       "slug": "ocean-blue-waterproof-gym-bag",
       "price": 40,
@@ -253,12 +305,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/cWXA1TG.png"],
+      "images": [
+        "https://i.imgur.com/cWXA1TG.png"
+      ],
       "creationAt": "2026-01-27T16:37:07.000Z",
       "updatedAt": "2026-01-27T16:37:07.000Z"
     },
     {
-      "id": 199,
+      "id": "199",
       "title": "Active Red Waterproof Gym Bag",
       "slug": "active-red-waterproof-gym-bag",
       "price": 40,
@@ -271,12 +325,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://i.imgur.com/aMkyLvm.png"],
+      "images": [
+        "https://i.imgur.com/aMkyLvm.png"
+      ],
       "creationAt": "2026-01-27T16:37:13.000Z",
       "updatedAt": "2026-01-27T16:37:13.000Z"
     },
     {
-      "id": 200,
+      "id": "200",
       "title": "Sweater",
       "slug": "sweater",
       "price": 50,
@@ -289,12 +345,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T16:44:10.000Z",
       "updatedAt": "2026-01-27T16:44:10.000Z"
     },
     {
-      "id": 202,
+      "id": "202",
       "title": "user_1769533275149mm",
       "slug": "user-1769533275149mm",
       "price": 100,
@@ -307,12 +365,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placeimg.com/640/480/any"],
+      "images": [
+        "https://placeimg.com/640/480/any"
+      ],
       "creationAt": "2026-01-27T17:01:15.000Z",
       "updatedAt": "2026-01-27T17:01:16.000Z"
     },
     {
-      "id": 204,
+      "id": "204",
       "title": "New Product",
       "slug": "new-product",
       "price": 10,
@@ -325,12 +385,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T17:54:55.000Z",
       "updatedAt": "2026-01-27T17:54:55.000Z"
     },
     {
-      "id": 210,
+      "id": "210",
       "title": "nmtnfgb",
       "slug": "nmtnfgb",
       "price": 325,
@@ -343,12 +405,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placeimg.com/640/480/tech"],
+      "images": [
+        "https://placeimg.com/640/480/tech"
+      ],
       "creationAt": "2026-01-27T18:12:31.000Z",
       "updatedAt": "2026-01-27T18:12:31.000Z"
     },
     {
-      "id": 211,
+      "id": "211",
       "title": "T-Shirt",
       "slug": "t-shirt",
       "price": 70,
@@ -361,12 +425,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T18:50:45.000Z",
       "updatedAt": "2026-01-27T18:50:45.000Z"
     },
     {
-      "id": 212,
+      "id": "212",
       "title": "Skinny Jeans",
       "slug": "skinny-jeans",
       "price": 40,
@@ -379,12 +445,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T18:51:47.000Z",
       "updatedAt": "2026-01-27T18:51:47.000Z"
     },
     {
-      "id": 213,
+      "id": "213",
       "title": "Jeans",
       "slug": "jeans",
       "price": 50,
@@ -397,12 +465,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T19:04:23.000Z",
       "updatedAt": "2026-01-27T19:04:23.000Z"
     },
     {
-      "id": 214,
+      "id": "214",
       "title": "Shirt",
       "slug": "shirt",
       "price": 50,
@@ -415,12 +485,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T19:07:13.000Z",
       "updatedAt": "2026-01-27T19:07:13.000Z"
     },
     {
-      "id": 215,
+      "id": "215",
       "title": "jacket",
       "slug": "jacket",
       "price": 13,
@@ -433,12 +505,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T21:34:17.000Z",
       "updatedAt": "2026-01-27T21:34:17.000Z"
     },
     {
-      "id": 216,
+      "id": "216",
       "title": "title 1",
       "slug": "title-1",
       "price": 300,
@@ -451,12 +525,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T22:41:40.000Z",
       "updatedAt": "2026-01-27T22:41:40.000Z"
     },
     {
-      "id": 217,
+      "id": "217",
       "title": "88",
       "slug": "88",
       "price": 99,
@@ -469,12 +545,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T22:58:48.000Z",
       "updatedAt": "2026-01-27T22:58:48.000Z"
     },
     {
-      "id": 218,
+      "id": "218",
       "title": "y",
       "slug": "y",
       "price": 55,
@@ -487,12 +565,15 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T22:59:15.000Z",
-      "updatedAt": "2026-01-27T22:59:15.000Z"
+      "updatedAt": "2026-01-27T22:59:15.000Z",
+      "isDeleted": true
     },
     {
-      "id": 220,
+      "id": "220",
       "title": "aml",
       "slug": "aml",
       "price": 400,
@@ -505,12 +586,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-27T23:42:20.000Z",
       "updatedAt": "2026-01-27T23:42:20.000Z"
     },
     {
-      "id": 221,
+      "id": "221",
       "title": "amlvv0",
       "slug": "amlvv0",
       "price": 400,
@@ -523,12 +606,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T00:11:15.000Z",
       "updatedAt": "2026-01-28T00:12:30.000Z"
     },
     {
-      "id": 222,
+      "id": "222",
       "title": "ahmed01",
       "slug": "ahmed01",
       "price": 40,
@@ -541,12 +626,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T15:16:02.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T00:13:45.000Z",
       "updatedAt": "2026-01-28T00:18:11.000Z"
     },
     {
-      "id": 223,
+      "id": "223",
       "title": "Mất quyền kiểm soát",
       "slug": "mat-quyen-kiem-soat",
       "price": 345,
@@ -559,12 +646,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:32:51.000Z",
       "updatedAt": "2026-01-28T02:32:51.000Z"
     },
     {
-      "id": 224,
+      "id": "224",
       "title": "Mất quyền kiểm soát 1",
       "slug": "mat-quyen-kiem-soat-1",
       "price": 101,
@@ -577,12 +666,15 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:34:48.000Z",
-      "updatedAt": "2026-01-28T02:34:48.000Z"
+      "updatedAt": "2026-01-28T02:34:48.000Z",
+      "isDeleted": true
     },
     {
-      "id": 225,
+      "id": "225",
       "title": "Mất quyền kiểm soát 2",
       "slug": "mat-quyen-kiem-soat-2",
       "price": 102,
@@ -595,12 +687,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:34:57.000Z",
       "updatedAt": "2026-01-28T02:34:57.000Z"
     },
     {
-      "id": 226,
+      "id": "226",
       "title": "Mất quyền kiểm soát 3",
       "slug": "mat-quyen-kiem-soat-3",
       "price": 103,
@@ -613,12 +707,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:35:06.000Z",
       "updatedAt": "2026-01-28T02:35:06.000Z"
     },
     {
-      "id": 227,
+      "id": "227",
       "title": "Mất quyền kiểm soát 4",
       "slug": "mat-quyen-kiem-soat-4",
       "price": 104,
@@ -631,12 +727,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:36:10.000Z",
       "updatedAt": "2026-01-28T02:36:10.000Z"
     },
     {
-      "id": 228,
+      "id": "228",
       "title": "Mất quyền kiểm so soát 5",
       "slug": "mat-quyen-kiem-so-soat-5",
       "price": 105,
@@ -649,12 +747,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:36:19.000Z",
       "updatedAt": "2026-01-28T02:36:19.000Z"
     },
     {
-      "id": 229,
+      "id": "229",
       "title": "Mất quyền kiểm soát 6",
       "slug": "mat-quyen-kiem-soat-6",
       "price": 106,
@@ -667,12 +767,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:36:26.000Z",
       "updatedAt": "2026-01-28T02:36:26.000Z"
     },
     {
-      "id": 230,
+      "id": "230",
       "title": "Mất quyền kiểm soát 7",
       "slug": "mat-quyen-kiem-soat-7",
       "price": 107,
@@ -685,12 +787,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:36:33.000Z",
       "updatedAt": "2026-01-28T02:36:33.000Z"
     },
     {
-      "id": 231,
+      "id": "231",
       "title": "Mất quyền kiểm soát 8",
       "slug": "mat-quyen-kiem-soat-8",
       "price": 108,
@@ -703,12 +807,14 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-28T02:54:10.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:36:39.000Z",
       "updatedAt": "2026-01-28T02:36:39.000Z"
     },
     {
-      "id": 233,
+      "id": "233",
       "title": "شاشه سمارت",
       "slug": "",
       "price": 890,
@@ -721,9 +827,49 @@
         "creationAt": "2026-01-27T11:46:15.000Z",
         "updatedAt": "2026-01-27T11:46:15.000Z"
       },
-      "images": ["https://placehold.co/600x400"],
+      "images": [
+        "https://placehold.co/600x400"
+      ],
       "creationAt": "2026-01-28T02:55:46.000Z",
       "updatedAt": "2026-01-28T02:55:46.000Z"
+    },
+    {
+      "id": "234",
+      "title": "Sản phẩm cao cấp",
+      "price": 1234567,
+      "description": "Sản phẩm thuộc bộ sưu tập Luxury",
+      "images": [
+        "https://via.placeholder.com/200"
+      ],
+      "category": {
+        "id": 1,
+        "name": "Miscellaneous"
+      },
+      "comments": [],
+      "isDeleted": false
+    },
+    {
+      "id": "235",
+      "title": "Nước hoa YSL",
+      "price": 4500000,
+      "description": "Sản phẩm cao cấp",
+      "images": [
+        "data:image/jpeg;base64,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"
+      ],
+      "category": {
+        "id": 1,
+        "name": "Miscellaneous"
+      },
+      "comments": [
+        {
+          "id": "1769702560529",
+          "text": "nước hoa như cc",
+          "postId": "235",
+          "createdAt": "2026-01-29T16:02:40.529Z",
+          "date": "23:02:40 29/1/2026"
+        }
+      ],
+      "isDeleted": false
     }
   ]
 }
