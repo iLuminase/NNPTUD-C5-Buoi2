@@ -1,15 +1,22 @@
 //Sử dụng db.json và load data ra giao diện
 
+/**
+ * GLOBAL VARIABLES - Biến toàn cục
+ */
 let allProducts = []; // Lưu toàn bộ dữ liệu sản phẩm
 let filteredProducts = []; // Lưu dữ liệu sau khi filter
 let currentPage = 1; // Trang hiện tại
 let itemsPerPage = 10; // Số sản phẩm mỗi trang
 
-// Hàm lấy dữ liệu từ db.json
+/**
+ * READ - LẤY DỮ LIỆU TỪ SERVER
+ * Hàm lấy dữ liệu từ server local:3000/products
+ * Có fallback về db.json nếu server không khả dụng
+ */
 async function loadData() {
   try {
-    console.log("Đang load dữ liệu từ db.json...");
-    const response = await fetch("./db.json");
+    console.log("Đang load dữ liệu từ server local:3000/products...");
+    const response = await fetch("http://localhost:3000/products");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -19,8 +26,16 @@ async function loadData() {
     console.log("Load dữ liệu thành công:", products.length, "sản phẩm");
     return products;
   } catch (error) {
-    console.error("Lỗi khi tải dữ liệu:", error);
-    return [];
+    console.error("Lỗi khi tải dữ liệu từ server:", error);
+    console.log("Đang fallback về db.json...");
+    // Fallback to local db.json if server is not available
+    try {
+      const fallbackResponse = await fetch("./db.json");
+      if (!fallbackResponse.ok) throw new Error("Fallback failed");
+      return await fallbackResponse.json();
+    } catch {
+      return [];
+    }
   }
 }
 
@@ -95,6 +110,10 @@ function renderProducts(products = filteredProducts) {
           </button>
           <button class="btn btn-warning" onclick="enableEdit(${product.id})" title="Edit product">
             <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-secondary" onclick="openCommentsModal(${product.id})" title="View comments">
+            <i class="fas fa-comments"></i>
+            <span class="badge bg-light text-dark ms-1">${(product.comments || []).length}</span>
           </button>
           <button class="btn btn-danger" onclick="deleteProduct(${product.id})" title="Delete product">
             <i class="fas fa-trash"></i>
@@ -314,8 +333,12 @@ function enableEdit(productId) {
   row.classList.add("table-warning");
 }
 
-// Hàm lưu chỉnh sửa
-function saveEdit(productId) {
+// Hàm lưu chỉnh sửa (Sync với API)
+/**
+ * UPDATE - CẬP NHẬT SẢN PHẨM
+ * Lưu thay đổi của sản phẩm và đồng bộ với server
+ */
+async function saveEdit(productId) {
   const row = document.getElementById(`product-row-${productId}`);
 
   // Get new values
@@ -350,46 +373,40 @@ function saveEdit(productId) {
     return;
   }
 
-  // Update in allProducts array
-  const productIndex = allProducts.findIndex((p) => p.id === productId);
-  if (productIndex !== -1) {
-    allProducts[productIndex].title = newTitle;
-    allProducts[productIndex].category.name = newCategory;
-    allProducts[productIndex].price = newPrice;
-    allProducts[productIndex].description = newDescription;
-  }
+  // Find product to get full object
+  const product = allProducts.find((p) => p.id === productId);
+  if (!product) return;
 
-  // Update in filteredProducts array
-  const filteredIndex = filteredProducts.findIndex((p) => p.id === productId);
-  if (filteredIndex !== -1) {
-    filteredProducts[filteredIndex].title = newTitle;
-    filteredProducts[filteredIndex].category.name = newCategory;
-    filteredProducts[filteredIndex].price = newPrice;
-    filteredProducts[filteredIndex].description = newDescription;
-  }
+  // Update object
+  const updatedProduct = {
+    ...product,
+    title: newTitle,
+    category: { ...product.category, name: newCategory },
+    price: newPrice,
+    description: newDescription,
+    updatedAt: new Date().toISOString(),
+  };
 
-  console.log(`Updated product ${productId}:`, {
-    newTitle,
-    newCategory,
-    newPrice,
-    newDescription,
-  });
-
-  // Re-render to show updated data
-  renderProducts();
-
-  // Show success message
-  showToast("Product updated successfully!", "success");
+  // Call API to update
+  await updateProductAPI(productId, updatedProduct);
 }
 
-// Hàm hủy chỉnh sửa
+// Hàm cancelEdit
 function cancelEdit(productId) {
   // Simply re-render to restore original view
   renderProducts();
   showToast("Edit cancelled", "info");
 }
 
-// Hàm hiển thị toast notification
+/**
+ * UTILITY FUNCTIONS - CÁC HÀM HỖ TRỢ
+ */
+
+/**
+ * Hiển thị toast notification
+ * @param {string} message - Nội dung thông báo
+ * @param {string} type - Loại thông báo (success, danger, info, warning)
+ */
 function showToast(message, type = "info") {
   // Create toast element
   const toast = document.createElement("div");
@@ -412,6 +429,10 @@ function showToast(message, type = "info") {
 }
 
 // Hàm xem chi tiết sản phẩm (cải tiến)
+/**
+ * VIEW - XEM CHI TIẾT SẢN PHẨM
+ * Hiển thị đầy đủ thông tin của sản phẩm
+ */
 function viewProduct(productId) {
   const product = allProducts.find((p) => p.id === productId);
   if (product) {
@@ -437,25 +458,425 @@ function editProduct(productId) {
   enableEdit(productId);
 }
 
-// Hàm xóa sản phẩm (Soft Delete)
-function deleteProduct(productId) {
+// Hàm xóa sản phẩm (Soft Delete)/**
+//  * DELETE (Soft) - XÓA MỀM SẢN PHẨM
+//  * Đánh dấu sản phẩm là đã xóa (isDeleted: true)
+//  * Sản phẩm vẫnƯ được lưu trong CSDL nhưng hiển thị với gạch ngang
+//  */
+async function deleteProduct(productId) {
   if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
     // Soft delete - mark as deleted instead of removing
     const product = allProducts.find((p) => p.id === productId);
     if (product) {
-      product.isDeleted = true;
-      console.log(`Đã đánh dấu xóa sản phẩm ID: ${productId}`);
-      renderProducts();
-      showToast("Product marked as deleted", "success");
+      const updatedProduct = {
+        ...product,
+        isDeleted: true,
+        updatedAt: new Date().toISOString(),
+      };
+
+      // Call API to update
+      await updateProductAPI(productId, updatedProduct);
     }
   }
 }
 
+// Hàm UPDATE - Cập nhật sản phẩm qua API
+async function updateProductAPI(productId, updatedProduct) {
+  try {
+    console.log(`Đang cập nhật sản phẩm ID: ${productId}...`);
+    const response = await fetch(
+      `http://localhost:3000/products/${productId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Cập nhật thành công:", result);
+
+    // Update local data
+    const productIndex = allProducts.findIndex((p) => p.id === productId);
+    if (productIndex !== -1) {
+      allProducts[productIndex] = result;
+    }
+
+    // Update filtered data
+    const filteredIndex = filteredProducts.findIndex((p) => p.id === productId);
+    if (filteredIndex !== -1) {
+      filteredProducts[filteredIndex] = result;
+    }
+
+    renderProducts();
+    showToast("Sản phẩm cập nhật thành công!", "success");
+  } catch (error) {
+    console.error("Lỗi khi cập nhật sản phẩm:", error);
+    showToast("Lỗi khi cập nhật sản phẩm!", "danger");
+  }
+}
+
+// Hàm CREATE - Tạo sản phẩm mới
+/**
+ * CREATE - TẠO SẢN PHẨM MỚI
+ * Tạo sản phẩm với ID tự động tăng (maxId + 1)
+ * ID được server json-server generate tự động
+ * @param {object} productData - Dữ liệu sản phẩm (không gồm ID)
+ */
+async function createProduct(productData) {
+  try {
+    console.log("Đang tạo sản phẩm mới...");
+
+    // Tính toán ID mới = max ID + 1
+    const maxId = Math.max(...allProducts.map((p) => parseInt(p.id) || 0), 0);
+    const newId = maxId + 1;
+
+    // Dữ liệu sản phẩm để gửi lên server
+    const newProduct = {
+      id: newId,
+      ...productData,
+      creationAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      images: productData.images || ["https://placehold.co/600x400"],
+      comments: [], // Khởi tạo mảng comments rỗng
+    };
+
+    const response = await fetch("http://localhost:3000/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Tạo sản phẩm thành công:", result);
+
+    // Add to local arrays
+    allProducts.push(result);
+    filteredProducts = [...allProducts];
+
+    // Reset pagination
+    currentPage = 1;
+    renderProducts();
+    showToast(
+      "Sản phẩm tạo mới thành công! (ID: " + result.id + ")",
+      "success",
+    );
+    return result;
+  } catch (error) {
+    console.error("Lỗi khi tạo sản phẩm:", error);
+    showToast("Lỗi khi tạo sản phẩm!", "danger");
+  }
+}
+
+// Hàm DELETE - Xóa sản phẩm vĩnh viễn
+/**
+ * DELETE (Hard) - XÓA VĨNH VIỄN SẢN PHẨM
+ * Xóa hoàn toàn sản phẩm khỏi CSDL
+ * @param {number} productId - ID của sản phẩm cần xóa
+ */
+async function deleteProductPermanent(productId) {
+  try {
+    console.log(`Đang xóa sản phẩm ID: ${productId}...`);
+    const response = await fetch(
+      `http://localhost:3000/products/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log("Xóa sản phẩm thành công");
+
+    // Remove from local arrays
+    allProducts = allProducts.filter((p) => p.id !== productId);
+    filteredProducts = filteredProducts.filter((p) => p.id !== productId);
+
+    renderProducts();
+    showToast("Sản phẩm đã bị xóa vĩnh viễn!", "success");
+  } catch (error) {
+    console.error("Lỗi khi xóa sản phẩm:", error);
+    showToast("Lỗi khi xóa sản phẩm!", "danger");
+  }
+}
+
 // Hàm khởi tạo - load dữ liệu và render
+/**
+ * INITIALIZATION - KHỞI TẠO ỨNG DỤNG
+ * Tải dữ liệu từ server khi trang load xong
+ */
 async function initializeApp() {
   allProducts = await loadData();
   filteredProducts = [...allProducts]; // Copy toàn bộ dữ liệu vào filtered
   renderProducts();
+}
+
+/**
+ * MODAL FUNCTIONS - CÁC HÀM QUẢN LÝ MODAL
+ */
+
+/**
+ * Mở modal tạo sản phẩm mới
+ */
+function openCreateModal() {
+  // Reset form
+  document.getElementById("createProductForm").reset();
+
+  // Tính toán ID mới để hiển thị cho user
+  const maxId = Math.max(...allProducts.map((p) => parseInt(p.id) || 0), 0);
+  const nextId = maxId + 1;
+
+  console.log(`Mở modal tạo sản phẩm (ID sẽ là: ${nextId})`);
+
+  // Mở modal
+  const modal = new bootstrap.Modal(
+    document.getElementById("createProductModal"),
+  );
+  modal.show();
+}
+
+/**
+ * Submit form tạo sản phẩm
+ */
+async function submitCreateProduct() {
+  // Lấy dữ liệu từ form
+  const title = document.getElementById("createTitle").value.trim();
+  const category = document.getElementById("createCategory").value;
+  const price = parseFloat(document.getElementById("createPrice").value);
+  const description = document.getElementById("createDescription").value.trim();
+
+  // Validate
+  if (!title) {
+    alert("Vui lòng nhập tên sản phẩm!");
+    return;
+  }
+  if (!category) {
+    alert("Vui lòng chọn danh mục!");
+    return;
+  }
+  if (isNaN(price) || price <= 0) {
+    alert("Vui lòng nhập giá hợp lệ!");
+    return;
+  }
+  if (!description) {
+    alert("Vui lòng nhập mô tả sản phẩm!");
+    return;
+  }
+
+  // Tìm category object từ products hiện có
+  const categoryObj = allProducts.find((p) => p.category.name === category)
+    ?.category || {
+    name: category,
+    slug: category.toLowerCase(),
+    image: "https://placehold.co/600x400",
+  };
+
+  // Dữ liệu sản phẩm
+  const productData = {
+    title,
+    slug: title.toLowerCase().replace(/\s+/g, "-"),
+    price,
+    description,
+    category: categoryObj,
+  };
+
+  // Gọi hàm CREATE
+  const result = await createProduct(productData);
+
+  // Đóng modal nếu thành công
+  if (result) {
+    const modal = bootstrap.Modal.getInstance(
+      document.getElementById("createProductModal"),
+    );
+    modal.hide();
+  }
+}
+
+/**
+ * COMMENTS FUNCTIONS - CÁC HÀM QUẢN LÝ BÌNH LUẬN
+ */
+
+/**
+ * Lấy comments của một sản phẩm
+ * @param {number} productId - ID của sản phẩm
+ */
+function getProductComments(productId) {
+  const product = allProducts.find((p) => p.id == productId);
+  return product?.comments || [];
+}
+
+/**
+ * Thêm bình luận mới cho sản phẩm
+ * @param {number} productId - ID của sản phẩm
+ * @param {string} commentText - Nội dung bình luận
+ */
+async function addComment(productId, commentText) {
+  try {
+    if (!commentText.trim()) {
+      showToast("Vui lòng nhập nội dung bình luận!", "warning");
+      return;
+    }
+
+    const product = allProducts.find((p) => p.id == productId);
+    if (!product) return;
+
+    // Tính ID comment mới
+    const maxCommentId = Math.max(
+      ...(product.comments || []).map((c) => parseInt(c.id) || 0),
+      0,
+    );
+    const newCommentId = maxCommentId + 1;
+
+    // Tạo comment object
+    const newComment = {
+      id: String(newCommentId),
+      text: commentText.trim(),
+      postId: String(productId),
+      createdAt: new Date().toISOString(),
+    };
+
+    // Khởi tạo comments array nếu chưa có
+    if (!product.comments) {
+      product.comments = [];
+    }
+
+    // Thêm comment vào local data
+    product.comments.push(newComment);
+
+    // Cập nhật trên server
+    const updatedProduct = { ...product };
+    await updateProductAPI(productId, updatedProduct);
+
+    console.log(`Thêm bình luận #${newCommentId} cho sản phẩm #${productId}`);
+    showToast("Bình luận thêm thành công!", "success");
+
+    // Cập nhật hiển thị comments
+    renderComments(productId);
+  } catch (error) {
+    console.error("Lỗi khi thêm bình luận:", error);
+    showToast("Lỗi khi thêm bình luận!", "danger");
+  }
+}
+
+/**
+ * Xóa bình luận
+ * @param {number} productId - ID của sản phẩm
+ * @param {string} commentId - ID của bình luận
+ */
+async function deleteComment(productId, commentId) {
+  try {
+    if (!confirm("Bạn có chắc chắn muốn xóa bình luận này?")) return;
+
+    const product = allProducts.find((p) => p.id == productId);
+    if (!product || !product.comments) return;
+
+    // Xóa comment từ local data
+    product.comments = product.comments.filter((c) => c.id !== commentId);
+
+    // Cập nhật trên server
+    const updatedProduct = { ...product };
+    await updateProductAPI(productId, updatedProduct);
+
+    console.log(`Xóa bình luận #${commentId} của sản phẩm #${productId}`);
+    showToast("Bình luận đã bị xóa!", "success");
+
+    // Cập nhật hiển thị comments
+    renderComments(productId);
+  } catch (error) {
+    console.error("Lỗi khi xóa bình luận:", error);
+    showToast("Lỗi khi xóa bình luận!", "danger");
+  }
+}
+
+/**
+ * Hiển thị comments của sản phẩm
+ * @param {number} productId - ID của sản phẩm
+ */
+function renderComments(productId) {
+  const commentContainer = document.getElementById("commentsContainer");
+  if (!commentContainer) return;
+
+  const comments = getProductComments(productId);
+
+  let commentsHTML = "";
+
+  if (comments.length === 0) {
+    commentsHTML =
+      '<div class="alert alert-info py-2">Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</div>';
+  } else {
+    commentsHTML = comments
+      .map(
+        (comment) => `
+      <div class="comment-item mb-2 p-2 border-start border-primary ps-3">
+        <div class="d-flex justify-content-between align-items-start">
+          <small class="text-muted"><i class="fas fa-user me-1"></i>Bình luận #${comment.id}</small>
+          <button class="btn btn-sm btn-outline-danger" onclick="deleteComment(${productId}, '${comment.id}')" title="Xóa">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+        <p class="mb-1">${comment.text}</p>
+        <small class="text-muted"><i class="fas fa-clock me-1"></i>${new Date(comment.createdAt).toLocaleString("vi-VN")}</small>
+      </div>
+    `,
+      )
+      .join("");
+  }
+
+  commentContainer.innerHTML = commentsHTML;
+}
+
+/**
+ * Mở modal comments của sản phẩm
+ * @param {number} productId - ID của sản phẩm
+ */
+function openCommentsModal(productId) {
+  const product = allProducts.find((p) => p.id == productId);
+  if (!product) return;
+
+  // Cập nhật tiêu đề modal
+  document.getElementById("commentsModalTitle").textContent =
+    `Bình luận - ${product.title}`;
+  document.getElementById("commentsProductId").value = productId;
+
+  // Hiển thị comments
+  renderComments(productId);
+
+  // Reset input
+  document.getElementById("commentText").value = "";
+
+  // Mở modal
+  const modal = new bootstrap.Modal(document.getElementById("commentsModal"));
+  modal.show();
+}
+
+/**
+ * Submit comment từ modal
+ */
+async function submitComment() {
+  const productId = parseInt(
+    document.getElementById("commentsProductId").value,
+  );
+  const commentText = document.getElementById("commentText").value;
+
+  await addComment(productId, commentText);
+  document.getElementById("commentText").value = "";
 }
 
 // Gọi hàm khởi tạo khi DOM sẵn sàng

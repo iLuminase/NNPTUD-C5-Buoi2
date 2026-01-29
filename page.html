@@ -96,6 +96,16 @@
                 >
                   <i class="fas fa-arrow-down me-1"></i>Price ↓
                 </button>
+
+                <!-- Create Product Button -->
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  onclick="openCreateModal()"
+                  title="Create new product"
+                >
+                  <i class="fas fa-plus me-1"></i>Create Product
+                </button>
               </div>
             </div>
           </div>
@@ -173,6 +183,162 @@
         <p class="mb-0">
           Try adjusting your search criteria or clear the search filter.
         </p>
+      </div>
+    </div>
+
+    <!-- Create Product Modal -->
+    <div
+      class="modal fade"
+      id="createProductModal"
+      tabindex="-1"
+      aria-labelledby="createProductModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="createProductModalLabel">
+              <i class="fas fa-plus me-2"></i>Create New Product
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="createProductForm">
+              <div class="mb-3">
+                <label for="createTitle" class="form-label">Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="createTitle"
+                  placeholder="Enter product name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="createCategory" class="form-label">Category</label>
+                <select class="form-select" id="createCategory" required>
+                  <option value="">Select a category</option>
+                  <option value="Clothes">Clothes</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Shoes">Shoes</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="createPrice" class="form-label">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="createPrice"
+                  placeholder="Enter price"
+                  step="0.01"
+                  min="0"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="createDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="createDescription"
+                  rows="3"
+                  placeholder="Enter product description"
+                  required
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="submitCreateProduct()"
+            >
+              <i class="fas fa-check me-1"></i>Create Product
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comments Modal -->
+    <div
+      class="modal fade"
+      id="commentsModal"
+      tabindex="-1"
+      aria-labelledby="commentsModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary text-white">
+            <h5 class="modal-title" id="commentsModalTitle">
+              <i class="fas fa-comments me-2"></i>Comments
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="commentsProductId" />
+
+            <!-- Comments List -->
+            <div
+              id="commentsContainer"
+              class="mb-3 max-height-comments overflow-auto"
+            ></div>
+
+            <!-- Add Comment Form -->
+            <div class="card mt-3">
+              <div class="card-body">
+                <h6 class="card-title">
+                  <i class="fas fa-pen-fancy me-2"></i>Thêm bình luận mới
+                </h6>
+                <div class="input-group">
+                  <textarea
+                    class="form-control"
+                    id="commentText"
+                    placeholder="Nhập bình luận của bạn..."
+                    rows="2"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="submitComment()"
+            >
+              <i class="fas fa-paper-plane me-1"></i>Post Comment
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

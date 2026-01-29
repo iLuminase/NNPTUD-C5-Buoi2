@@ -17,7 +17,21 @@
       },
       "images": ["https://placehold.co/600x400"],
       "creationAt": "2026-01-27T12:58:26.000Z",
-      "updatedAt": "2026-01-27T12:58:26.000Z"
+      "updatedAt": "2026-01-27T12:58:26.000Z",
+      "comments": [
+        {
+          "id": "1",
+          "text": "Sản phẩm rất tốt, dung lượng lớn",
+          "postId": "160",
+          "createdAt": "2026-01-28T10:30:00.000Z"
+        },
+        {
+          "id": "2",
+          "text": "Giao hàng nhanh, đóng gói cẩn thận",
+          "postId": "160",
+          "createdAt": "2026-01-28T11:00:00.000Z"
+        }
+      ]
     },
     {
       "id": 187,
@@ -35,7 +49,15 @@
       },
       "images": ["https://i.imgur.com/PgK0RMZ.png"],
       "creationAt": "2026-01-27T16:04:41.000Z",
-      "updatedAt": "2026-01-27T16:04:41.000Z"
+      "updatedAt": "2026-01-27T16:04:41.000Z",
+      "comments": [
+        {
+          "id": "1",
+          "text": "Giày rất êm, thích lắm",
+          "postId": "187",
+          "createdAt": "2026-01-28T09:00:00.000Z"
+        }
+      ]
     },
     {
       "id": 188,

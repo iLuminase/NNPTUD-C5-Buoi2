@@ -734,3 +734,26 @@ a:focus-visible {
   text-decoration: line-through;
   color: var(--deleted-color);
 }
+/* ===================================
+   Comments Styles
+   =================================== */
+
+.max-height-comments {
+  max-height: 400px;
+}
+
+.comment-item {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+  background-color: #e9ecef;
+  transform: translateX(2px);
+}
+
+.comment-item p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
