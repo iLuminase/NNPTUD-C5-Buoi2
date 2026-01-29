@@ -61,6 +61,11 @@ function renderProducts(products = filteredProducts) {
   paginatedProducts.forEach((product) => {
     const row = document.createElement("tr");
     row.id = `product-row-${product.id}`;
+
+    // Add deleted class if soft deleted
+    if (product.isDeleted) {
+      row.classList.add("deleted-row");
+    }
     row.innerHTML = `
       <td class="text-center">
         <img 
@@ -432,13 +437,17 @@ function editProduct(productId) {
   enableEdit(productId);
 }
 
-// Hàm xóa sản phẩm
+// Hàm xóa sản phẩm (Soft Delete)
 function deleteProduct(productId) {
   if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
-    allProducts = allProducts.filter((p) => p.id !== productId);
-    filteredProducts = filteredProducts.filter((p) => p.id !== productId);
-    console.log(`Đã xóa sản phẩm ID: ${productId}`);
-    renderProducts();
+    // Soft delete - mark as deleted instead of removing
+    const product = allProducts.find((p) => p.id === productId);
+    if (product) {
+      product.isDeleted = true;
+      console.log(`Đã đánh dấu xóa sản phẩm ID: ${productId}`);
+      renderProducts();
+      showToast("Product marked as deleted", "success");
+    }
   }
 }
 
